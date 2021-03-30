@@ -12,6 +12,7 @@ const spinner = ora('Read config from file and shell');
 
 async function run(source, compileLib) {
     spinner.start();
+    const  startTime = Date.now()
 
     let test = 'less';
     const ssAnalysis = {
@@ -78,6 +79,8 @@ async function run(source, compileLib) {
    
                                 The Files: ${chalk.blue(`Total(${ssAnalysis.total})`)}, Success(${ssAnalysis.success}), ${chalk.red(`Fail(${ssAnalysis.fail})`)}
                             `))
+
+                            console.log(Date.now() - startTime+'s')
                         }
                     })
                 }

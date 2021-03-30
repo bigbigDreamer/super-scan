@@ -9,6 +9,15 @@ const config = require('./ss.config.js') || {};
 
 const spinner = ora('Read config from file and shell');
 
+var showMem = function() {
+    var mem = process.memoryUsage();
+    var format = function(bytes) {
+        return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+    };
+    console.log('Process: heapTotal ' + format(mem.heapTotal) + ' heapUsed ' + format(mem.heapUsed) + ' rss ' + format(mem.rss));
+    console.log('-----------------------------------------------------------');
+};
+
 
 async function run(source, compileLib) {
     spinner.start();
@@ -81,6 +90,7 @@ async function run(source, compileLib) {
                             `))
 
                             console.log(Date.now() - startTime+'s')
+                            showMem();
                         }
                     })
                 }

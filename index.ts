@@ -12,10 +12,16 @@ const worker = fork('./lib/index.js');
 
 const spinner = ora('Read config from file and shell');
 
+const showMem = function() {
+    const mem = process.memoryUsage();
+    const format = (bytes) => (bytes / 1024 / 1024).toFixed(2) + ' MB';
+    console.log('Process: heapTotal ' + format(mem.heapTotal) + ' heapUsed ' + format(mem.heapUsed) + ' rss ' + format(mem.rss));
+    console.log('-----------------------------------------------------------');
+};
 
 async function run(source, compileLib) {
     spinner.start();
-    const startTime = Date.now();
+    console.time();
 
     let test = 'less';
 
@@ -91,7 +97,8 @@ async function run(source, compileLib) {
 
                                     The Files: ${chalk.blue(`Total(${ssAnalysis.total})`)}, Success(${ssAnalysis.success}), ${chalk.red(`Fail(${ssAnalysis.fail})`)}
                                 `))
-                            console.log(Date.now() - startTime+'s');
+                            console.timeEnd()
+                            showMem();
                             process.kill(pid);
                         }
 
@@ -128,3 +135,8 @@ process.on('uncaughtException', function (err) {
     // 退出进程
     process.exit();
 });
+
+// 内存使用过多，自杀 子进程监控内存占用过大，主动退出；
+if (process.memoryUsage().rss > 734003200) {
+    process.exit();
+}

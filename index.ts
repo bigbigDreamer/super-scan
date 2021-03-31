@@ -21,7 +21,7 @@ var showMem = function() {
 
 async function run(source, compileLib) {
     spinner.start();
-    const  startTime = Date.now()
+    console.time();
 
     let test = 'less';
     const ssAnalysis = {
@@ -88,8 +88,7 @@ async function run(source, compileLib) {
    
                                 The Files: ${chalk.blue(`Total(${ssAnalysis.total})`)}, Success(${ssAnalysis.success}), ${chalk.red(`Fail(${ssAnalysis.fail})`)}
                             `))
-
-                            console.log(Date.now() - startTime+'s')
+                            console.timeEnd();
                             showMem();
                         }
                     })

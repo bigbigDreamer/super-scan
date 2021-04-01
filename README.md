@@ -115,3 +115,5 @@ if (process.memoryUsage().rss > 734003200) {
 【6】[什么是cpu密集型，io密集型](https://zhuanlan.zhihu.com/p/62766037)
 
 【7】[多进程优化：Node.js子进程与线程](https://serverless-action.com/fontend/nodejs/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%8C%96%EF%BC%9ANode.js%E5%AD%90%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.html#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5)
+
+【8】[浏览器与Node的事件循环(Event Loop)有何区别?](https://blog.fundebug.com/2019/01/15/diffrences-of-browser-and-node-in-event-loop/)
